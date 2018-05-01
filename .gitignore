@@ -1,0 +1,15 @@
+# Intermediate build files from gradle builds
+build
+
+# Log file from running MSBuild
+msbuild.log
+
+# Build outputs
+bin
+obj
+
+# Visual Studio local settings files.
+*.suo
+.vs
+*.csproj.bak
+*.csproj.user
