@@ -1,8 +1,5 @@
 # Intermediate build files from gradle builds
-build
-
-# Log file from running MSBuild
-msbuild.log
+packages
 
 # Build outputs
 bin
