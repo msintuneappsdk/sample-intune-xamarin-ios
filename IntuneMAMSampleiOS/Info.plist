@@ -40,8 +40,6 @@
 	<string>1</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array/>
 	<key>MinimumOSVersion</key>
 	<string>9.3.5</string>
 	<key>CFBundleIdentifier</key>
