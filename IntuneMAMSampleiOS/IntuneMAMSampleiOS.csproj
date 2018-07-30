@@ -86,54 +86,16 @@
     <Compile Include="MainControllerEnrollmentDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Resources/Images.xcassets/AppIcons.appiconset/Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources/Images.xcassets/AppIcons.appiconset/Intune_tile_120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources/Images.xcassets/AppIcons.appiconset/Intune_tile_152.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources/Images.xcassets/AppIcons.appiconset/Intune_tile_180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources/Images.xcassets/AppIcons.appiconset/Intune_tile_29.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources/Images.xcassets/AppIcons.appiconset/Intune_tile_58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources/Images.xcassets/AppIcons.appiconset/Intune_tile_76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources/Images.xcassets/AppIcons.appiconset/Intune_tile_87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_120.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_152.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_180.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_58.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_76.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_87.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_29.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_58.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_87.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_120.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_152.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_167.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_180.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Intune_tile_1024.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
