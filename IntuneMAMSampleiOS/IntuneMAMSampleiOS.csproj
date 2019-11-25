@@ -103,9 +103,9 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Microsoft.Intune.MAM.iOS">
-      <HintPath>..\packages\Microsoft.Intune.MAM.Xamarin.iOS.3.0.4072.4\lib\Xamarin.iOS\Microsoft.Intune.MAM.iOS.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Intune.MAM.Xamarin.iOS.12.0.12\lib\xamarinios10\Microsoft.Intune.MAM.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <Import Project="..\packages\Microsoft.Intune.MAM.Xamarin.iOS.3.0.4072.4\build\Xamarin.iOS\Microsoft.Intune.MAM.Xamarin.iOS.targets" Condition="Exists('..\packages\Microsoft.Intune.MAM.Xamarin.iOS.3.0.4072.4\build\Xamarin.iOS\Microsoft.Intune.MAM.Xamarin.iOS.targets')" />
+  <Import Project="..\packages\Microsoft.Intune.MAM.Xamarin.iOS.12.0.12\build\xamarinios10\Microsoft.Intune.MAM.Xamarin.iOS.targets" Condition="Exists('..\packages\Microsoft.Intune.MAM.Xamarin.iOS.12.0.12\build\xamarinios10\Microsoft.Intune.MAM.Xamarin.iOS.targets')" />
 </Project>
