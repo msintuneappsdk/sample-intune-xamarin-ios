@@ -10,3 +10,6 @@ obj
 .vs
 *.csproj.bak
 *.csproj.user
+
+# MacOS metadata files
+.DS_Store
