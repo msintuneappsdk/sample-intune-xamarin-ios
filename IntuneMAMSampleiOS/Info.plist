@@ -41,7 +41,7 @@
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>MinimumOSVersion</key>
-	<string>11.0</string>
+	<string>12.2</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.microsoftintunemamsample</string>
 	<key>CFBundleDisplayName</key>
