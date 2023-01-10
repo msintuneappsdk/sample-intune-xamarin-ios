@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDisplayName</key>
-	<string>Microsoft Intune MAM Sample</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -17,55 +15,15 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.microsoftintunemamsample</string>
-	<key>CFBundleName</key>
-	<string>Microsoft Intune MAM Sample</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>msauth.com.microsoft.intunemam</string>
-			</array>
-		</dict>
-	</array>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>https-intunemam</string>
-		<string>http-intunemam</string>
-		<string>microsoft-edge-https</string>
-		<string>microsoft-edge-http</string>
-		<string>ms-outlook</string>
-		<string>companyportal</string>
-		<string>smart-ns</string>
-		<string>zips</string>
-		<string>lacoonsecurity</string>
-		<string>wandera</string>
-		<string>lookoutwork-ase</string>
-		<string>skycure</string>
-		<string>betteractiveshield</string>
-		<string>smsec</string>
-		<string>mvisionmobile</string>
-		<string>scmx</string>
-	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>MinimumOSVersion</key>
-	<string>14.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
 		<integer>2</integer>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Sample</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -76,7 +34,21 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
+	<key>MinimumOSVersion</key>
+	<string>14.0</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.microsoftintunemamsample</string>
+	<key>CFBundleDisplayName</key>
+	<string>Microsoft Intune MAM Sample</string>
+	<key>CFBundleName</key>
+	<string>Microsoft Intune MAM Sample</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Sample</string>
 </dict>
 </plist>
