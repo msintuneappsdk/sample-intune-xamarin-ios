@@ -10,6 +10,7 @@ using System;
 using System.IO;
 using UIKit;
 using Microsoft.Intune.MAM;
+using CoreFoundation;
 
 namespace IntuneMAMSampleiOS
 {
@@ -21,13 +22,14 @@ namespace IntuneMAMSampleiOS
 
         public override void ViewDidLoad()
         {
-            if(!string.IsNullOrWhiteSpace(IntuneMAMEnrollmentManager.Instance.EnrolledAccount))
-            {
-                this.HideLogInButton();
-            }
-            IntuneMAMEnrollmentManager.Instance.Delegate = new MainControllerEnrollmentDelegate(this);
+            var intuneMAMEnrollmentDelegate = new MainControllerEnrollmentDelegate(this);
+            intuneMAMEnrollmentDelegate.EnrollmentStateChanged += IntuneMAMEnrollmentDelegate_EnrollmentStateChanged;
+            IntuneMAMEnrollmentManager.Instance.Delegate = intuneMAMEnrollmentDelegate;
+
             this.textCopy.ShouldReturn += this.DismissKeyboard;
             this.textUrl.ShouldReturn += this.DismissKeyboard;
+
+            RefreshIntuneEnrollState();
         }
 
         partial void buttonUrl_TouchUpInside (UIButton sender)
@@ -124,21 +126,49 @@ namespace IntuneMAMSampleiOS
 			return true;
 		}
 
-        public void HideLogInButton()
+        public void SetLoginInProgressState()
         {
+            activityIndicator.StartAnimating();
+            this.buttonLogIn.Hidden = true;
+            this.buttonLogOut.Hidden = true;
+            this.textEmail.Hidden = true;
+            this.labelEmail.Hidden = true;
+            this.buttonLogIn.Hidden = true;
+        }
+
+        public void SetLoggedInState()
+        {
+            activityIndicator.StopAnimating();
+            this.buttonLogOut.Hidden = false;
             this.buttonLogIn.Hidden = true;
             this.textEmail.Hidden = true;
             this.labelEmail.Hidden = true;
-            this.buttonLogOut.Hidden = false;
         }
 
-        public void HideLogOutButton()
+        public void SetLoggedOutState()
         {
+            activityIndicator.StopAnimating();
             this.buttonLogOut.Hidden = true;
-            this.textEmail.Hidden = false;
-            this.labelEmail.Hidden = false;
             this.buttonLogIn.Hidden = false;
         }
 
-	}
+        void RefreshIntuneEnrollState()
+        {
+            var enrolled = IntuneMAMEnrollmentManager.Instance.EnrolledAccount != null;
+            BeginInvokeOnMainThread(() => {
+                labelEnrollState.Text = enrolled ? $"Enrolled with Intune on account: {IntuneMAMEnrollmentManager.Instance.EnrolledAccount}" : "Not enrolled with Intune";
+                viewEnrollState.BackgroundColor = enrolled ? UIColor.Green : UIColor.Red;
+
+                if (enrolled)
+                    SetLoggedInState();
+                else
+                    SetLoggedOutState();
+            });
+        }
+
+        void IntuneMAMEnrollmentDelegate_EnrollmentStateChanged(object sender, EnrollmentEventArgs e)
+        {
+            RefreshIntuneEnrollState();
+        }
+    }
 }
