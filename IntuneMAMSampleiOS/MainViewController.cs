@@ -103,8 +103,13 @@ namespace IntuneMAMSampleiOS
             else
             {
                 Console.WriteLine("MSAL not configured Intune will handle the login");
-                SetLoginInProgressState();
-                IntuneMAMEnrollmentManager.Instance.LoginAndEnrollAccount(this.textEmail.Text);
+                if (!string.IsNullOrEmpty(this.textEmail.Text))
+                {
+                    SetLoginInProgressState();
+                    IntuneMAMEnrollmentManager.Instance.LoginAndEnrollAccount(this.textEmail.Text);
+                }
+                else
+                    ShowAlert("Hey!", "Enter an email");
             }
         }
 
@@ -212,6 +217,7 @@ namespace IntuneMAMSampleiOS
                 catch (Exception e)
                 {
                     this.ShowAlert("MSAL interactive Login failed", e.Message);
+                    SetLoggedOutState();
                     return;
                 }
             }
@@ -232,6 +238,9 @@ namespace IntuneMAMSampleiOS
                     buttonLogIn.SetTitle("MSAL login", UIControlState.Normal);
                     buttonLogIn.SetTitle("MSAL login", UIControlState.Focused);
                     buttonLogIn.SetTitle("MSAL login", UIControlState.Selected);
+
+                    labelEmail.Hidden = true;
+                    textEmail.Hidden = true;
                 }
 
                 if (enrolled)
