@@ -84,6 +84,7 @@
       <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="MainControllerEnrollmentDelegate.cs" />
+    <Compile Include="EnrollmentEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
