@@ -50,5 +50,14 @@
 	<string>Microsoft Intune MAM Sample</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Sample</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>msauth.com.microsoft.intunemam</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
