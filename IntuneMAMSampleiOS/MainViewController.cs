@@ -11,11 +11,15 @@ using System.IO;
 using UIKit;
 using Microsoft.Intune.MAM;
 using CoreFoundation;
+using IntuneMAMSampleiOS.Msal;
+using System.Threading.Tasks;
 
 namespace IntuneMAMSampleiOS
 {
     public partial class MainViewController: UIViewController
-	{
+    {
+        Task msalLoginTask;
+
         public MainViewController(IntPtr handle) : base(handle)
         {
         }
@@ -87,12 +91,37 @@ namespace IntuneMAMSampleiOS
 
         partial void ButtonLogIn_TouchUpInside(UIButton sender)
         {
-            IntuneMAMEnrollmentManager.Instance.LoginAndEnrollAccount(this.textEmail.Text);
+            if (MsalClientService.MSAL_CONFIGURED)
+            {
+                Console.WriteLine("MSAL configured the login is delegated to the MSAL library");
+                if (this.msalLoginTask is null || this.msalLoginTask.Status != TaskStatus.Running)
+                {
+                    SetLoginInProgressState();
+                    msalLoginTask = LoginAndEnrollWithMSAL();
+                }
+            }
+            else
+            {
+                Console.WriteLine("MSAL not configured Intune will handle the login");
+                SetLoginInProgressState();
+                IntuneMAMEnrollmentManager.Instance.LoginAndEnrollAccount(this.textEmail.Text);
+            }
         }
 
         partial void ButtonLogOut_TouchUpInside(UIButton sender)
         {
             IntuneMAMEnrollmentManager.Instance.DeRegisterAndUnenrollAccount(IntuneMAMEnrollmentManager.Instance.EnrolledAccount, true);
+            if (MsalClientService.MSAL_CONFIGURED)
+            {
+                SetLoginInProgressState();
+                (new MsalClientService()).Logout()
+                    .ContinueWith((t) => {
+                        if(t.IsCompletedSuccessfully)
+                            BeginInvokeOnMainThread(() => {
+                                SetLoggedOutState();
+                            });
+                });
+            }
         }
 
         public void ShowAlert (string title, string message)
@@ -150,6 +179,45 @@ namespace IntuneMAMSampleiOS
             activityIndicator.StopAnimating();
             this.buttonLogOut.Hidden = true;
             this.buttonLogIn.Hidden = false;
+
+            if (!MsalClientService.MSAL_CONFIGURED)
+            {
+                this.textEmail.Hidden = false;
+                this.labelEmail.Hidden = false;
+                this.buttonLogIn.Hidden = false;
+            }
+        }
+
+        async Task LoginAndEnrollWithMSAL()
+        {
+            var msalClient = new MsalClientService();
+            string upn = null;
+            try
+            {
+                upn = await msalClient.LoginSilent();
+                Console.WriteLine("MSAL silent Login successful");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("MSAL silent Login failed", e.Message);
+            }
+
+            if (upn is null)
+            {
+                try
+                {
+                    upn = await msalClient.LoginInteractive(this);
+                    Console.WriteLine("MSAL interactive Login successful");
+                }
+                catch (Exception e)
+                {
+                    this.ShowAlert("MSAL interactive Login failed", e.Message);
+                    return;
+                }
+            }
+
+            Console.WriteLine($"Trying to enroll with Intune {upn}");
+            IntuneMAMEnrollmentManager.Instance.RegisterAndEnrollAccount(upn);
         }
 
         void RefreshIntuneEnrollState()
@@ -158,6 +226,13 @@ namespace IntuneMAMSampleiOS
             BeginInvokeOnMainThread(() => {
                 labelEnrollState.Text = enrolled ? $"Enrolled with Intune on account: {IntuneMAMEnrollmentManager.Instance.EnrolledAccount}" : "Not enrolled with Intune";
                 viewEnrollState.BackgroundColor = enrolled ? UIColor.Green : UIColor.Red;
+
+                if (MsalClientService.MSAL_CONFIGURED)
+                {
+                    buttonLogIn.SetTitle("MSAL login", UIControlState.Normal);
+                    buttonLogIn.SetTitle("MSAL login", UIControlState.Focused);
+                    buttonLogIn.SetTitle("MSAL login", UIControlState.Selected);
+                }
 
                 if (enrolled)
                     SetLoggedInState();

@@ -84,6 +84,7 @@
       <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="MainControllerEnrollmentDelegate.cs" />
+    <Compile Include="Msal\MsalClientService.cs" />
     <Compile Include="EnrollmentEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
