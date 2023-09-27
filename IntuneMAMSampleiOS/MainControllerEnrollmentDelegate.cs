@@ -4,6 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
 using Microsoft.Intune.MAM;
 
 namespace IntuneMAMSampleiOS
@@ -11,6 +12,8 @@ namespace IntuneMAMSampleiOS
     public class MainControllerEnrollmentDelegate : IntuneMAMEnrollmentDelegate
     {
         MainViewController ViewController { get; }
+
+        public event EventHandler<EnrollmentEventArgs> EnrollmentStateChanged;
 
         public MainControllerEnrollmentDelegate(MainViewController controller)
         {
@@ -21,11 +24,12 @@ namespace IntuneMAMSampleiOS
 		{
             if(status.DidSucceed)
             {
-                this.ViewController.HideLogInButton();
+                EnrollmentStateChanged?.Invoke(this, new EnrollmentEventArgs { Enrolled = true });
             }
             else if (IntuneMAMEnrollmentStatusCode.MAMEnrollmentStatusLoginCanceled != status.StatusCode)
             {
                 this.ViewController.ShowAlert("Enrollment Failed", status.ErrorString);
+                EnrollmentStateChanged?.Invoke(this, new EnrollmentEventArgs { Enrolled = false });
             }
 		}
 
@@ -33,7 +37,7 @@ namespace IntuneMAMSampleiOS
 		{
             if(status.DidSucceed)
             {
-                this.ViewController.HideLogOutButton();
+                EnrollmentStateChanged?.Invoke(this, new EnrollmentEventArgs { Enrolled = false });
             }
             else
             {

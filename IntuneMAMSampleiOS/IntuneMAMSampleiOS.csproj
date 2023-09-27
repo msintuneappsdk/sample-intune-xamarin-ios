@@ -84,6 +84,8 @@
       <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="MainControllerEnrollmentDelegate.cs" />
+    <Compile Include="Msal\MsalClientService.cs" />
+    <Compile Include="EnrollmentEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
@@ -104,6 +106,32 @@
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Microsoft.Intune.MAM.iOS">
       <HintPath>..\packages\Microsoft.Intune.MAM.Xamarin.iOS.17.4.0\lib\xamarinios10\Microsoft.Intune.MAM.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Abstractions">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.6.22.0\lib\netstandard2.0\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\netstandard2.0\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.AccessControl">
+      <HintPath>..\packages\System.Security.AccessControl.5.0.0\lib\netstandard2.0\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.AccessControl">
+      <HintPath>..\packages\System.IO.FileSystem.AccessControl.5.0.0\lib\netstandard2.0\System.IO.FileSystem.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client">
+      <HintPath>..\packages\Microsoft.Identity.Client.4.49.1\lib\xamarinios10\Microsoft.Identity.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.Identity.Client.Extensions.Msal">
+      <HintPath>..\packages\Microsoft.Identity.Client.Extensions.Msal.2.25.3\lib\netstandard2.0\Microsoft.Identity.Client.Extensions.Msal.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
